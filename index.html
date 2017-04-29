@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Psychic Game</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+	<h1>The Psychic Game</h1>
+	<p>Guess what letter I'm thinking of</p>
+	<div id="winsDiv">Wins: 0</div><br>
+	<div id="lossesDiv">Losses: 0</div><br>
+	<div id="guessesDiv">Guesses:</div><br>
+	<div id="guessListDiv">Your Guesses so far:</div><br>
+	<div id="comment"></div>
+
+	<script type="text/javascript">
+
+		var validKeys = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+		var maxGuesses = 9;
+		var wins = 0;
+		var losses = 0;
+		var guesses = maxGuesses;
+		var guessList = [];
+
+		var computerSelect = validKeys[Math.floor(Math.random() * 26)];
+		console.log("Computer selects ", computerSelect);
+
+		guessesDiv.innerHTML = "Guesses: " + guesses;
+
+		document.onkeyup = function(event) {
+
+			console.log("event key code", event.keyCode, event.key);
+			var letter = String.fromCharCode(event.keyCode).toLowerCase();
+
+			guessList.push(letter);
+
+			comment.innerHTML = "";
+
+			if(letter === computerSelect) {
+				winsDiv.innerHTML = "Wins: " + ++wins;
+				
+				guesses = maxGuesses;
+				guessesDiv.innerHTML = "Guesses: " + guesses;
+
+				guessList = [];
+
+				comment.innerHTML = "You win!  The letter was " + computerSelect + ". Try again!";
+
+				computerSelect = validKeys[Math.floor(Math.random() * 26)];
+				console.log("Computer selects ", computerSelect);
+			}
+			else {
+				guessesDiv.innerHTML = "Guesses: " + --guesses;
+
+				if (guesses === 0) {
+					lossesDiv.innerHTML = "Losses: " + ++losses;
+
+					guesses = maxGuesses;
+					guessesDiv.innerHTML = "Guesses: " + guesses;
+
+					guessList = [];
+
+					comment.innerHTML = "You lose!  The letter was " + computerSelect + ". Try again!";
+
+					computerSelect = validKeys[Math.floor(Math.random() * 26)];
+					console.log("Computer selects ", computerSelect);
+				}
+			}
+			guessListDiv.innerHTML = "Your Guesses so far: " + guessList;
+
+		}
+
+	</script>
+	
+</body>
+</html>

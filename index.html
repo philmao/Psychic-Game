@@ -12,7 +12,7 @@
 	<div id="lossesDiv">Losses: 0</div><br>
 	<div id="guessesDiv">Guesses:</div><br>
 	<div id="guessListDiv">Your Guesses so far:</div><br>
-	<div id="comment"></div>
+	<div id="commentDiv"></div>
 
 	<script type="text/javascript">
 
@@ -36,7 +36,7 @@
 
 			guessList.push(letter);
 
-			comment.innerHTML = "";
+			commentDiv.innerHTML = "";
 
 			if(letter === computerSelect) {
 				winsDiv.innerHTML = "Wins: " + ++wins;
@@ -46,7 +46,7 @@
 
 				guessList = [];
 
-				comment.innerHTML = "You win!  The letter was " + computerSelect + ". Try again!";
+				commentDiv.innerHTML = "You win!  The letter was '" + computerSelect + "'. Try again!";
 
 				computerSelect = validKeys[Math.floor(Math.random() * 26)];
 				console.log("Computer selects ", computerSelect);
@@ -62,7 +62,7 @@
 
 					guessList = [];
 
-					comment.innerHTML = "You lose!  The letter was " + computerSelect + ". Try again!";
+					commentDiv.innerHTML = "You lose!  The letter was '" + computerSelect + "'. Try again!";
 
 					computerSelect = validKeys[Math.floor(Math.random() * 26)];
 					console.log("Computer selects ", computerSelect);
